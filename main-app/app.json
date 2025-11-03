@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "GalapaGo",
+    "slug": "main-app",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./app/assets/icons/turtle.png",
+    "splash": {
+      "image": "./app/assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fih.galapago",
+      "buildNumber": "1.0.1"
+    },
+    "android": {
+      "package": "host.fih.galapago",
+      "versionCode": 1
+    }
+  }
+}

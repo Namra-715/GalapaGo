@@ -1,0 +1,390 @@
+/*------------------ SIDEBAR -------------------*/
+.sidebar{
+    position: absolute;
+    width: 400px;
+    height: 1517px;
+    left: 0px;
+    top: -11px;
+
+    background: #0C7A80;
+}
+
+img{
+    position: absolute;
+    width: 116px;
+    height: 116px;
+    left: 59px;
+    top: 77px;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+
+h1{
+    position: absolute;
+    width: 185px;
+    height: 38px;
+    left: 180px;
+    top: 85px;
+
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 28px;
+    line-height: 49px;
+
+    color: #FFFFFF;
+}
+
+h2{
+    position: absolute;
+    width: 114px;
+    height: 22px;
+    left: 180px;
+    top: 135px;
+
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 30px;
+
+    color: #FFFFFF;
+}
+
+hr{
+    position: absolute;
+    width: 494px;
+    height: 0px;
+    top: 250px;
+
+    border: 0.5px solid #FFFFFF;
+}
+
+h3{
+    position: absolute;
+    width: 271px;
+    height: 22px;
+    left: 59px;
+    top: 288px;
+
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 44px;
+
+    color: #FFFFFF;
+}
+
+#addInfo{
+    top: 290px;
+}
+
+.links{
+    position: absolute;
+
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 30px;
+
+    color: #FFFFFF;
+}
+
+a#hotelLink{
+    width: 185px;
+    height: 31px;
+    left: 95px;
+    top: 370px;
+}
+a#fadLink{
+    width: 185px;
+    height: 31px;
+    left: 95px;
+    top: 390px;
+}
+
+a#marketLink{
+    width: 185px;
+    height: 31px;
+    left: 95px;
+    top: 410px;
+}
+
+a#agenciesLink{
+    width: 185px;
+    height: 31px;
+    left: 95px;
+    top: 430px;
+}
+
+a#attractionsLink{
+    width: 185px;
+    height: 31px;
+    left: 95px;
+    top: 450px;
+}
+
+a#transLink{
+    width: 185px;
+    height: 31px;
+    left: 95px;
+    top: 470px;
+}
+
+#knowBefore{
+    width: 215px;
+    height: 31px;
+    left: 95px;
+    top: 575px;
+
+}
+
+#topActivities{
+    width: 215px;
+    height: 31px;
+    left: 146px;
+    top: 670px;
+
+}
+
+#plan{
+    position: absolute;
+    width: 215px;
+    height: 31px;
+    left: 95px;
+    top: 612px;
+
+    font-family: Open Sans,sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 30px;
+
+    color: #FFFFFF;
+}
+
+/*------------------ PLAN YOUR TRIP PAGE -------------------*/
+#planYourTrip{
+    width: 256px;
+    left: 500px;
+
+    font-weight: 600;
+
+    color: #000000;
+}
+
+h6{
+    position: absolute;
+    width: 208px;
+    height: 38px;
+    left: 500px;
+    top: 815px;
+
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 25px;
+
+    color: #000000;
+}
+
+h7{
+    position: absolute;
+    width: 125px;
+    height: 38px;
+    left: 500px;
+    top: 158px;
+
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 33px;
+
+    color: #000000;
+}
+
+#islandHop{
+    left: 500px;
+    top: 200px;
+}
+
+#chooseIsland{
+    top: 240px;
+}
+
+#chooseCategory{
+    top: 393px;
+}
+
+select{
+    position: absolute;
+    width: 230px;
+    height: 53px;
+    left: 500px;
+    top: 330px;
+
+    background: #FFFFFF;
+    box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+
+    font-family: Open Sans,sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 25px;
+
+}
+
+#categorySelect{
+    top: 480px;
+}
+
+#markets{
+    left: 500px;
+    top: 580px;
+}
+
+#marketName{
+    top: 620px;
+}
+
+#marketAddress{
+    left: 970px;
+    top: 620px;
+}
+
+#marketNameInput{
+    position: absolute;
+    width: 300px;
+    height: 43px;
+    left: 500px;
+    top: 695px;
+
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+#marketAddressInput{
+    position: absolute;
+    width: 300px;
+    height: 43px;
+    left: 968px;
+    top: 695px;
+
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+#marketHours{
+    top: 745px;
+}
+
+#marketHoursInput{
+    position: absolute;
+    width: 300px;
+    height: 43px;
+    left: 500px;
+    top: 820px;
+
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+#marketPicture{
+    left: 970px;
+    top: 745px;
+}
+
+#marketPictureInput{
+    position: absolute;
+    width: 300px;
+    height: 43px;
+    left: 970px;
+    top: 820px;
+
+    background: #FFFFFF;
+    border: 1px solid #D1D1D1;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+#pushMe{
+    position: absolute;
+    width: 168px;
+    height: 48px;
+    left: 500px;
+    top: 920px;
+
+    background: #0C7A80;
+    border-radius: 10px;
+
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 33px;
+
+    color: #FFFFFF;
+}
+
+#showTables{
+    top: 550px;
+}
+
+#showHotels{
+    width: 215px;
+    height: 31px;
+    left: 95px;
+    top: 630px;
+
+}
+
+#showFAD{
+    width: 215px;
+    height: 31px;
+    left: 95px;
+    top: 650px;
+
+}
+
+#showMarkets{
+    width: 215px;
+    height: 31px;
+    left: 95px;
+    top: 670px;
+
+}
+
+#showAgencies{
+    width: 215px;
+    height: 31px;
+    left: 95px;
+    top: 690px;
+
+}
+
+#showAttractions{
+    width: 215px;
+    height: 31px;
+    left: 95px;
+    top: 710px;
+
+}
+
+#showTrans{
+    width: 215px;
+    height: 31px;
+    left: 95px;
+    top: 730px;
+
+}
