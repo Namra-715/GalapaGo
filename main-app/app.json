@@ -1,35 +1,32 @@
 {
   "expo": {
     "name": "GalapaGo",
-    "slug": "main-app",
-    "privacy": "public",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
-    "version": "1.0.1",
+    "slug": "galapago-tourism",
+    "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./app/assets/icons/turtle.png",
+    "icon": "./assets/icons/appIcon.png",
+    "userInterfaceStyle": "light",
     "splash": {
-      "image": "./app/assets/images/splash.png",
+      "image": "./assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-    },
-    "updates": {
-      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.fih.galapago",
-      "buildNumber": "1.0.1"
+      "bundleIdentifier": "com.galapago.tourism"
     },
     "android": {
-      "package": "host.fih.galapago",
-      "versionCode": 1
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icons/appIcon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.galapago.tourism"
+    },
+    "web": {
+      "favicon": "./assets/icons/appIcon.png"
     }
   }
 }
