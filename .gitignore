@@ -22,6 +22,7 @@ dist/
 *.ipa
 *.dSYM.zip
 *.dSYM
+.npm-cache/
 
 # Large asset files (consider using Git LFS for these)
 # Uncomment if you want to exclude images from git
