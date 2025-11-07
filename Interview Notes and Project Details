@@ -1,0 +1,52 @@
+The GalápaGo! team teamed up with the Galapagos Chamber of Tourism to develop a tourist-friendly application that encourages visitors to explore local businesses, respect sustainability efforts, and learn social customs.
+
+Organization : Galapagos Chamber of Tourism
+
+Page - https://www.scu.edu/engineering/labs--research/labs/frugal-innovation-hub/global-digital-transformation-clinic/
+
+Things to ask Allan during the user interview : -
+Functional (App related) : 
+What are the functional requirements? i.e. what they are trying to achieve and solve exactly.
+Justify any changes to features or functionality in the project.
+Is there an existing repo or prototype to base our project on ?
+What exactly do we incorporate AI (LLMs) for like reviews, questions, summary etc ?
+How many users and updates with time ?
+
+Project related :
+What are the objectives of the Chamber of Tourism, like to make people visit in the first place, promote local businesses, and sustainability ?
+Encourage tourists to stay - get them to know that there is more stuff to do.
+What all stakeholders are involved - government, local businesses, tourists (users) etc ?
+What do the different stakeholders want ?
+
+Suggestions: 
+AI Integration: 
+How to integrate information that is out there online to inform a chatbot which can supply recommendations based on location.
+Something more creative? For example, creating a story based on a trip using location data.
+
+Need to promote/show off the product. How do you make an application where people can see what activities are there in an environment with very limited bandwidth?
+How to keep the application as lightweight as possible while remaining visually appealing and usable?
+Functional Requirements:
+Partner with the Chamber of Tourism - use provided database of approved businesses/services, updated periodically by developers
+Concurrent users - Mostly dependent on AI integration (1000-2000 per day on lower-tier plan)
+Tech Stack:
+React Native (Existing codebase)
+Professor recommended Firebase
+
+Improve UX/UI
+Who visits - scientists, expensive location - money and time (seniors)
+Cruises are convenient because they handle most arrangements for you already.
+Senior accommodations?
+The intended audience will inform other design requirements
+
+Maybe look to promote visiting the Galapagos to another demographic/population?
+Disadvantages: The Galapagos are far away, and particularly expensive to visit
+The price of staying in the islands themselves is low, but getting there is not
+Will your target audience actually want to visit?
+Potential: University students/young professionals, younger people who are more interested in nature/conservation
+Notes from meeting with Allan : 
+Government of Ecuador has legal control/jurisdiction over the Galapagos Islands
+Primary driver of local economy is Tourism - Local Businesses (Chamber of Tourism)
+Larger businesses took interest (Cruise lines, airlines, etc.). Most money remains with the cruise lines instead of local businesses.
+The local Minister wanted to promote local tourism by promoting services such as hotels, restaurants, shops, tours, etc. As well as local sustainability initiatives.
+The project was never launched due to changes in the political climate, as the original Minister left office.
+Unique Ecosystem (Extremely Fragile)
