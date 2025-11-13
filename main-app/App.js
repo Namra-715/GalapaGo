@@ -1,51 +1,144 @@
-import 'react-native-gesture-handler';
-// import React, { Component } from 'react';
-import * as React from 'react';
-import * as firebase from 'firebase';
-
-import { getStorage } from '@firebase/storage';
-import '@firebase/database';
-import { getDatabase, ref} from '@firebase/database';
-
-import TabNavigator from './Routes';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { Tab } from 'native-base';
-// import { getDatabase, ref, onValue } from "firebase/database";
-// import NetInfo from "@react-native-community/netinfo";
-//
-// const unsubscribe = NetInfo.addEventListener(state => {
-//   console.log("Connection type", state.type);
-//   console.log("Is connected?", state.isConnected);
-// });
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'expo-status-bar';
+import { Image, View } from 'react-native';
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBkGmokW285RxesrlEOEGMOpL7DjBMvk_U",
-//   authDomain: "galapago-d4744.firebaseapp.com",
-//   databaseURL: "https://galapago-d4744-default-rtdb.firebaseio.com",
-//   projectId: "galapago-d4744",
-//   storageBucket: "galapago-d4744.appspot.com",
-//   messagingSenderId: "508955483910",
-//   appId: "1:508955483910:web:e910e43a67fdbca4c64887"
-// };
-//
-// const firebaseApp = firebase.initializeApp(firebaseConfig);
-// export const auth = firebase.auth;
-// export const db = firebase.database();
-// const storage = getStorage(firebaseApp);
-// const connectedRef = ref(db, ".info/connected");
-// onValue(connectedRef, (snap) => {
-//   if (snap.val() === true) {
-//     console.log("connected");
-//   } else {
-//     console.log("not connected");
-//   }
-// });
-// unsubscribe();
+import ThingsToDoScreen from './screens/ThingsToDoScreen';
+import HotelsScreen from './screens/HotelsScreen';
+import RestaurantsScreen from './screens/RestaurantsScreen';
+import MoreScreen from './screens/MoreScreen';
+import CultureHistoryScreen from './screens/CultureHistoryScreen';
+import SustainabilityScreen from './screens/SustainabilityScreen';
+import TransportationScreen from './screens/TransportationScreen';
+import SocialCustomsScreen from './screens/SocialCustomsScreen';
+import FloatingChatButton from './components/FloatingChatButton';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <TabNavigator/>
-    );
-  }
+const Tab = createBottomTabNavigator();
+const Stack = createStackNavigator();
+
+// Stack navigator for "More" tab screens
+function MoreStack() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#2E7D32',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}
+    >
+      <Stack.Screen 
+        name="More" 
+        component={MoreScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen 
+        name="CultureHistory" 
+        component={CultureHistoryScreen}
+        options={{ title: 'Culture & History' }}
+      />
+      <Stack.Screen 
+        name="Sustainability" 
+        component={SustainabilityScreen}
+        options={{ title: 'Sustainability' }}
+      />
+      <Stack.Screen 
+        name="Transportation" 
+        component={TransportationScreen}
+        options={{ title: 'Transportation' }}
+      />
+      <Stack.Screen 
+        name="SocialCustoms" 
+        component={SocialCustomsScreen}
+        options={{ title: 'Know Before You Go' }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+export default function App() {
+  console.log('App component loaded');
+  return (
+    <View style={{ flex: 1 }}>
+      <NavigationContainer>
+        <StatusBar style="auto" />
+        <Tab.Navigator
+        screenOptions={{
+          tabBarActiveTintColor: '#2E7D32',
+          tabBarInactiveTintColor: '#757575',
+          headerStyle: {
+            backgroundColor: '#2E7D32',
+          },
+          headerTintColor: '#fff',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+          },
+        }}
+      >
+        <Tab.Screen
+          name="ThingsToDo"
+          component={ThingsToDoScreen}
+          options={{
+            title: 'Things to Do',
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={require('./assets/icons/compass.png')}
+                style={{ width: size, height: size, tintColor: color }}
+                resizeMode="contain"
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Hotels"
+          component={HotelsScreen}
+          options={{
+            title: 'Hotels',
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={require('./assets/icons/bed.png')}
+                style={{ width: size, height: size, tintColor: color }}
+                resizeMode="contain"
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Restaurants"
+          component={RestaurantsScreen}
+          options={{
+            title: 'Restaurants',
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={require('./assets/icons/food.png')}
+                style={{ width: size, height: size, tintColor: color }}
+                resizeMode="contain"
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="More"
+          component={MoreStack}
+          options={{
+            title: 'More',
+            tabBarIcon: ({ color, size }) => (
+              <Image
+                source={require('./assets/icons/info.png')}
+                style={{ width: size, height: size, tintColor: color }}
+                resizeMode="contain"
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+      </NavigationContainer>
+      <FloatingChatButton />
+    </View>
+  );
 }
