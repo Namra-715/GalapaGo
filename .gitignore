@@ -25,7 +25,8 @@ dist/
 .npm-cache/
 
 # API Keys and sensitive config
-main-app/config/api.js
+main-app/.env
 .env
 .env.local
 .env.*.local
+!main-app/.env.example
