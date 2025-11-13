@@ -33,7 +33,7 @@ function MoreStack() {
       }}
     >
       <Stack.Screen 
-        name="More" 
+        name="MoreHome" 
         component={MoreScreen}
         options={{ headerShown: false }}
       />

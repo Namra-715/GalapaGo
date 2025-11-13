@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,12 +6,59 @@ import {
   StyleSheet,
   TouchableOpacity,
   Image,
-  ImageBackground,
+  Modal,
+  Dimensions,
 } from 'react-native';
+import { WebView } from 'react-native-webview';
 import { useNavigation } from '@react-navigation/native';
+import { GOOGLE_MAPS_API_KEY } from '../config/api';
+
+const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 export default function MoreScreen() {
   const navigation = useNavigation();
+  const [isMapExpanded, setIsMapExpanded] = useState(false);
+
+  // Galapagos Islands region coordinates
+  const galapagosRegion = {
+    latitude: -0.8,
+    longitude: -90.3,
+    latitudeDelta: 1.5,
+    longitudeDelta: 2.0,
+  };
+
+  // Google Maps Static API URL for small map (returns an image)
+  const getSmallMapImageUrl = () => {
+    if (!GOOGLE_MAPS_API_KEY) return null;
+    const center = `${galapagosRegion.latitude},${galapagosRegion.longitude}`;
+    const zoom = 7;
+    const size = `${Math.round(SCREEN_WIDTH)}x180`;
+    return `https://maps.googleapis.com/maps/api/staticmap?center=${center}&zoom=${zoom}&size=${size}&key=${GOOGLE_MAPS_API_KEY}&style=feature:water|color:0x4a90e2&style=feature:landscape|color:0xf5f5f5`;
+  };
+
+  // HTML content with iframe for expanded map
+  const getExpandedMapHtml = () => {
+    if (!GOOGLE_MAPS_API_KEY) return null;
+    const center = `${galapagosRegion.latitude},${galapagosRegion.longitude}`;
+    const zoom = 8;
+    const embedUrl = `https://www.google.com/maps/embed/v1/view?key=${GOOGLE_MAPS_API_KEY}&center=${center}&zoom=${zoom}`;
+    return `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+          <style>
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            html, body { width: 100%; height: 100%; overflow: hidden; }
+            iframe { width: 100%; height: 100%; border: 0; display: block; }
+          </style>
+        </head>
+        <body>
+          <iframe src="${embedUrl}" allowfullscreen></iframe>
+        </body>
+      </html>
+    `;
+  };
 
   const menuItems = [
     {
@@ -45,14 +92,27 @@ export default function MoreScreen() {
   ];
 
   return (
-    <ScrollView style={styles.container}>
-      <ImageBackground
-        source={require('../assets/images/galapagos-beach-at-tortuga.jpg')}
-        style={styles.header}
-        imageStyle={styles.headerImage}
-      >
-        <View style={styles.headerContent} />
-      </ImageBackground>
+    <>
+      <ScrollView style={styles.container}>
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={() => setIsMapExpanded(true)}
+          style={styles.header}
+        >
+          {GOOGLE_MAPS_API_KEY && getSmallMapImageUrl() ? (
+            <Image
+              source={{ uri: getSmallMapImageUrl() }}
+              style={styles.map}
+              resizeMode="cover"
+            />
+          ) : (
+            <View style={styles.mapPlaceholder}>
+              <Text style={styles.mapPlaceholderText}>
+                Map unavailable{'\n'}Add GOOGLE_MAPS_API_KEY to .env
+              </Text>
+            </View>
+          )}
+        </TouchableOpacity>
 
       <View style={styles.content}>
         {menuItems.map((item) => (
@@ -90,6 +150,42 @@ export default function MoreScreen() {
         </Text>
       </View>
     </ScrollView>
+
+    {/* Expanded Map Modal */}
+    <Modal
+      visible={isMapExpanded}
+      animationType="slide"
+      transparent={false}
+      onRequestClose={() => setIsMapExpanded(false)}
+    >
+      <View style={styles.modalContainer}>
+        <View style={styles.modalHeader}>
+          <Text style={styles.modalTitle}>Galapagos Islands Map</Text>
+          <TouchableOpacity
+            onPress={() => setIsMapExpanded(false)}
+            style={styles.closeButton}
+          >
+            <Text style={styles.closeButtonText}>✕</Text>
+          </TouchableOpacity>
+        </View>
+        {GOOGLE_MAPS_API_KEY && getExpandedMapHtml() ? (
+          <WebView
+            source={{ html: getExpandedMapHtml() }}
+            style={styles.expandedMap}
+            scrollEnabled={true}
+            showsVerticalScrollIndicator={true}
+            showsHorizontalScrollIndicator={true}
+          />
+        ) : (
+          <View style={styles.mapPlaceholderExpanded}>
+            <Text style={styles.mapPlaceholderText}>
+              Map unavailable{'\n'}Add GOOGLE_MAPS_API_KEY to .env
+            </Text>
+          </View>
+        )}
+      </View>
+    </Modal>
+    </>
   );
 }
 
@@ -100,33 +196,67 @@ const styles = StyleSheet.create({
   },
   header: {
     height: 180,
-    justifyContent: 'flex-end',
+    overflow: 'hidden',
+    borderRadius: 0,
+  },
+  map: {
+    width: '100%',
+    height: '100%',
+  },
+  mapPlaceholder: {
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#e0e0e0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mapPlaceholderText: {
+    fontSize: 14,
+    color: '#757575',
+    textAlign: 'center',
+  },
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     padding: 20,
     paddingTop: 60,
-    paddingBottom: 30,
+    backgroundColor: '#2E7D32',
+    borderBottomWidth: 1,
+    borderBottomColor: '#1B5E20',
   },
-  headerImage: {
-    resizeMode: 'cover',
-  },
-  headerContent: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: 'flex-end',
-    padding: 20,
-    paddingTop: 60,
-    paddingBottom: 30,
-  },
-  headerSubtitle: {
-    fontSize: 18,
-    fontWeight: '600',
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
     color: '#fff',
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)',
-    paddingHorizontal: 16,
-    paddingVertical: 10,
-    borderRadius: 8,
-    alignSelf: 'flex-start',
+  },
+  closeButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.2)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  closeButtonText: {
+    fontSize: 24,
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  expandedMap: {
+    flex: 1,
+    width: SCREEN_WIDTH,
+    height: SCREEN_HEIGHT - 120,
+  },
+  mapPlaceholderExpanded: {
+    flex: 1,
+    backgroundColor: '#e0e0e0',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   content: {
     padding: 15,
