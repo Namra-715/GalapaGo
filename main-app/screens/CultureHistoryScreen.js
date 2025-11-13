@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,10 +6,61 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import { cultureHistory } from '../data/placeholderData';
 
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
 export default function CultureHistoryScreen() {
+  const [activeImageIndex, setActiveImageIndex] = useState({});
+
+  const handleScroll = (itemId, event) => {
+    const contentOffsetX = event.nativeEvent.contentOffset.x;
+    const imageWidth = SCREEN_WIDTH - 30;
+    const currentIndex = Math.round(contentOffsetX / imageWidth);
+    setActiveImageIndex(prev => ({ ...prev, [itemId]: currentIndex }));
+  };
+
+  const renderImageGallery = (item) => {
+    const images = item.images || [item.image];
+    const currentIndex = activeImageIndex[item.id] || 0;
+    
+    return (
+      <View style={styles.imageGalleryContainer}>
+        <ScrollView 
+          horizontal 
+          pagingEnabled 
+          showsHorizontalScrollIndicator={false}
+          style={styles.imageGallery}
+          onScroll={(e) => handleScroll(item.id, e)}
+          scrollEventThrottle={16}
+        >
+          {images.map((img, index) => (
+            <Image 
+              key={index}
+              source={img} 
+              style={styles.cardImage}
+            />
+          ))}
+        </ScrollView>
+        {images.length > 1 && (
+          <View style={styles.imageIndicators}>
+            {images.map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.indicator,
+                  index === currentIndex && styles.activeIndicator,
+                ]}
+              />
+            ))}
+          </View>
+        )}
+      </View>
+    );
+  };
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -17,9 +68,9 @@ export default function CultureHistoryScreen() {
         <Text style={styles.headerSubtitle}>Discover the rich heritage of Galapagos</Text>
       </View>
       {cultureHistory.map((item) => (
-        <TouchableOpacity key={item.id} style={styles.card}>
-          <Image source={item.image} style={styles.cardImage} />
-          <View style={styles.cardContent}>
+        <View key={item.id} style={styles.card}>
+          {renderImageGallery(item)}
+          <TouchableOpacity style={styles.cardContent}>
             <View style={styles.cardHeader}>
               <Text style={styles.cardTitle}>{item.title}</Text>
               <View style={styles.badge}>
@@ -30,8 +81,8 @@ export default function CultureHistoryScreen() {
             <View style={styles.cardFooter}>
               <Text style={styles.locationText}>📍 {item.location}</Text>
             </View>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </View>
       ))}
     </ScrollView>
   );
@@ -69,10 +120,38 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
+  imageGalleryContainer: {
+    position: 'relative',
+  },
+  imageGallery: {
+    height: 200,
+  },
   cardImage: {
-    width: '100%',
+    width: SCREEN_WIDTH - 30, // Account for card margin (15 on each side)
     height: 200,
     resizeMode: 'cover',
+  },
+  imageIndicators: {
+    position: 'absolute',
+    bottom: 10,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  indicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    marginHorizontal: 4,
+  },
+  activeIndicator: {
+    backgroundColor: '#fff',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
   },
   cardContent: {
     padding: 15,

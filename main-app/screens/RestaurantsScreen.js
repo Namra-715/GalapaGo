@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,14 +6,65 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import { restaurants } from '../data/placeholderData';
 
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+
 export default function RestaurantsScreen() {
+  const [activeImageIndex, setActiveImageIndex] = useState({});
+
   const renderPriceRange = (range) => {
     return range.split('').map((char, index) => (
       <Text key={index} style={styles.priceChar}>{char}</Text>
     ));
+  };
+
+  const handleScroll = (restaurantId, event) => {
+    const contentOffsetX = event.nativeEvent.contentOffset.x;
+    const imageWidth = SCREEN_WIDTH - 30;
+    const currentIndex = Math.round(contentOffsetX / imageWidth);
+    setActiveImageIndex(prev => ({ ...prev, [restaurantId]: currentIndex }));
+  };
+
+  const renderImageGallery = (restaurant) => {
+    const images = restaurant.images || [restaurant.image];
+    const currentIndex = activeImageIndex[restaurant.id] || 0;
+    
+    return (
+      <View style={styles.imageGalleryContainer}>
+        <ScrollView 
+          horizontal 
+          pagingEnabled 
+          showsHorizontalScrollIndicator={false}
+          style={styles.imageGallery}
+          onScroll={(e) => handleScroll(restaurant.id, e)}
+          scrollEventThrottle={16}
+        >
+          {images.map((img, index) => (
+            <Image 
+              key={index}
+              source={img} 
+              style={styles.cardImage}
+            />
+          ))}
+        </ScrollView>
+        {images.length > 1 && (
+          <View style={styles.imageIndicators}>
+            {images.map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  styles.indicator,
+                  index === currentIndex && styles.activeIndicator,
+                ]}
+              />
+            ))}
+          </View>
+        )}
+      </View>
+    );
   };
 
   return (
@@ -23,9 +74,9 @@ export default function RestaurantsScreen() {
         <Text style={styles.headerSubtitle}>Taste the flavors of Galapagos</Text>
       </View>
       {restaurants.map((restaurant) => (
-        <TouchableOpacity key={restaurant.id} style={styles.card}>
-          <Image source={restaurant.image} style={styles.cardImage} />
-          <View style={styles.cardContent}>
+        <View key={restaurant.id} style={styles.card}>
+          {renderImageGallery(restaurant)}
+          <TouchableOpacity style={styles.cardContent}>
             <View style={styles.cardHeader}>
               <Text style={styles.cardTitle}>{restaurant.name}</Text>
               <View style={styles.ratingContainer}>
@@ -45,8 +96,8 @@ export default function RestaurantsScreen() {
               <Text style={styles.contactText}>📞 {restaurant.phone}</Text>
               <Text style={styles.contactText}>✉️ {restaurant.email}</Text>
             </View>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        </View>
       ))}
     </ScrollView>
   );
@@ -84,10 +135,38 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
+  imageGalleryContainer: {
+    position: 'relative',
+  },
+  imageGallery: {
+    height: 200,
+  },
   cardImage: {
-    width: '100%',
+    width: SCREEN_WIDTH - 30, // Account for card margin (15 on each side)
     height: 200,
     resizeMode: 'cover',
+  },
+  imageIndicators: {
+    position: 'absolute',
+    bottom: 10,
+    left: 0,
+    right: 0,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  indicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: 'rgba(255, 255, 255, 0.5)',
+    marginHorizontal: 4,
+  },
+  activeIndicator: {
+    backgroundColor: '#fff',
+    width: 10,
+    height: 10,
+    borderRadius: 5,
   },
   cardContent: {
     padding: 15,

@@ -19,26 +19,55 @@ A React Native mobile app for Galapagos Island tourism information. This static 
 
 ### Prerequisites
 
-- Node.js (v18 or later)
-- npm or yarn
-- Expo CLI (optional, can use npx)
+- Node.js (v18 or later) - [Download here](https://nodejs.org/)
+- npm (comes with Node.js)
+- For iOS Simulator: Xcode (from Mac App Store, ~12GB download)
 
 ### Installation
 
-1. Install dependencies:
+1. Navigate to the app directory:
+```bash
+cd main-app
+```
+
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-2. Start the development server:
+3. Start the development server:
 ```bash
 npm start
 ```
 
-3. Run on your preferred platform:
-- iOS: `npm run ios` or press `i` in the Expo CLI
-- Android: `npm run android` or press `a` in the Expo CLI
-- Web: `npm run web` or press `w` in the Expo CLI
+This will open the Expo DevTools in your browser and show a QR code in the terminal.
+
+### Running on MacBook
+
+**Option 1: Web Browser (Easiest - No extra setup needed)**
+```bash
+npm run web
+```
+This opens the app in your default web browser. Perfect for quick testing!
+
+**Option 2: iOS Simulator (Requires Xcode)**
+1. Install Xcode from Mac App Store (includes iOS Simulator)
+2. Open Xcode → Settings → Locations → Command Line Tools (select Xcode)
+3. Run: `npm run ios` or press `i` in the Expo CLI
+4. The iOS Simulator will launch automatically
+
+**Option 3: Physical iPhone (Requires Expo Go app)**
+1. Install "Expo Go" from the App Store on your iPhone
+2. Make sure iPhone and MacBook are on the same Wi-Fi
+3. Run `npm start` and scan the QR code with your iPhone camera
+4. See `IPHONE_SETUP.md` for detailed instructions
+
+**Quick Commands:**
+- `npm start` - Start dev server (shows QR code)
+- `npm run web` - Open in web browser
+- `npm run ios` - Open in iOS Simulator (requires Xcode)
+- Press `w` in terminal - Open web version
+- Press `i` in terminal - Open iOS Simulator
 
 ## Project Structure
 
