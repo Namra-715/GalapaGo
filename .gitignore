@@ -1,1 +1,42 @@
 .DS_Store
+node_modules/
+.expo/
+.expo-shared/
+npm-debug.log
+yarn-error.log
+*.log
+package-lock.json
+yarn.lock
+*.keystore
+*.p12
+*.p8
+*.pem
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+dist/
+*.jks
+*.apk
+*.aab
+*.ipa
+*.dSYM.zip
+*.dSYM
+.npm-cache/
+
+# Large asset files (consider using Git LFS for these)
+# Uncomment if you want to exclude images from git
+# main-app/assets/images/**/*.jpg
+# main-app/assets/images/**/*.jpeg
+# main-app/assets/images/**/*.png
+# main-app/assets/images/**/*.webp
+# main-app/assets/videos/**/*.mp4
+
+# API Keys and sensitive config
+main-app/config/api.js
+.env
+.env.local
+.env.*.local
+main-app/.env
+main-app/.env.local
+main-app/.env.*.local

@@ -1,0 +1,66 @@
+Tell a before/after story with evidence and a live-ish demo:
+
+Problem & Context
+
+Who is your user? (FIH partner / role)
+    FIH partner - Originally Galapagos Chamber of Tourism. Now independent.
+    Tourists visiting Galapagos Islands (promote newer demographic as well to visit)
+
+What does their workflow look like today?
+    Currently, they take cruise tours and just visit the islands very briefly, without interacting or spending much time 
+    with the local economy, customs, and people.
+
+What hurts about the current process? (“Before” picture)
+    Very commercialized way of visiting such a unique place and ecosystem that mainly benefits the large corps. rather
+    than the local people. The scope for local businesses like restaurants and hotels is very limited in this scenario.
+
+User Research
+
+1–2 key insights from your interviews or observations.
+
+    1. Mainly demographic of people visting today consists of older people, although that is an existing market. We from our talks decided
+    that we would also focus on getting more younger visiters and scientists to the place. Hence, we have added stuff like adventurous things 
+    to do as well as ecosystem and wildlife information. We feel that if we provide the visitors with stuff that interests them
+    as well as differentiates the islands in some way, that is going to be a win.
+
+    2. The Galapagos Islands are an area with extremely limited internet connectivity.
+
+At least one direct quote or concrete example.
+
+    "The Galapagos are far away, and particularly expensive to visit
+    The price of staying in the islands themselves is low, but getting there is not
+    Will your target audience actually want to visit?"
+
+Briefly: how did this research change your idea?
+    Originally, the project was similar to what we did but only had outdated features and basic info like hotels, restuarants etc.
+    We aimed to add newer features that the younger audience are more likely to use like maps, AI chatbot, activites, local experiences etc.
+
+    Since the connectivity is extremely low, we have to now store the assets locally, compared to AWS being used prior. We also need to offer some 
+    other features as only when the person is online, like the AI chatbot because it uses the GeminiAPI.
+
+Prototype
+
+Walk through your prototype like a story: “User does A → sees B → can now do C.”
+
+Show how the “after” state is better for your user (time saved, confusion reduced, etc.).
+
+AI  
+Clearly point out where AI shows up (or why you deliberately chose not to use AI).
+    AI chatbot that answers questions related to Galapagos islands ranging from weather, hotels, things to do etc. Accessible from the app homescreen. This is powered by 
+    the Google Gemini API.
+
+How did YOU use AI in the development process itself? Which model did you use? Did you use any vibecoding tools? 
+    I used AI in the form of Cursor (Sonnet + GPT5) during the development process as a vibecoding tool. I also used chatGPT for writing and summarizing interviews.
+    I also used it to guide next steps or suggestions during development.
+
+Impact
+Why this matters for computing for social good (who benefits, how, and why it’s realistic).
+    I think this is a very impactful project as it will raise awareness about a sensitive ecosystem place like Galapagos. It will also provide
+    the locals with good business opportunities hence raising their standard of living. Moreover, tourists call also have a fun time and experience Which
+    they might not be able to get anywhere else.
+
+One concrete next step you’d take if you had another quarter.
+    One concrete step I would take if I had more time would definitely be to optimize the app. Currently, since we have the constraint of 
+    running most of the app offline due to limited connectivity, we had to bundle the images with the app itself. However, there are more tedious ways
+    to compress all those assets and reduce the size of the mobile app. I think I can definitely reduce the size from 500 mb currently to around 200-300 mb. We can also figure out
+    a way to do the same with videos. Maybe later try to provide AI without APIs (Internet usage).
