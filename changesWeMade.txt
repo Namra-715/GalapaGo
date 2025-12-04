@@ -1,0 +1,17 @@
+There are the changes we made to the original FIH repo:
+
+- The provided repo was more than 8 years old. It had serveral issues like outdated dependencies, broken packages, duplicate assets, etc. 
+We took all that code and refactored it to a more user-friendly newer application.
+
+- The provided repo had extremely CRITICAL security issues. It has the aws rds database API key, password username and everything else literally commited to main 
+without any sort of .env file or placeholders. We fixed that by using an .env file for our GMAPS and GEMINI APIs.
+
+- The original app was built with the assumption of internet availability. However, as per our interviews with Allan, we found out that 
+the Galapagos Islands are a place with extremely limited availability. So we modified the app to not use AWS to store assets but instead store them locally
+though we did provide some features like AI chatbot for when the user does have an internet connection.
+
+- We updated the design to be more appealing to the user. Added some young features that young people would like such as maps, things to do, conservation efforts etc.
+
+- We added more documentation.
+
+- We decided on clear future steps from our work that can be taken to make the application even better.
