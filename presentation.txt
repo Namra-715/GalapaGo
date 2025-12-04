@@ -42,7 +42,11 @@ Prototype
 
 Walk through your prototype like a story: “User does A → sees B → can now do C.”
 
+    Done in class Demo
+
 Show how the “after” state is better for your user (time saved, confusion reduced, etc.).
+
+    Done in class demo
 
 AI  
 Clearly point out where AI shows up (or why you deliberately chose not to use AI).
@@ -50,7 +54,7 @@ Clearly point out where AI shows up (or why you deliberately chose not to use AI
     the Google Gemini API.
 
 How did YOU use AI in the development process itself? Which model did you use? Did you use any vibecoding tools? 
-    I used AI in the form of Cursor (Sonnet + GPT5) during the development process as a vibecoding tool. I also used chatGPT for writing and summarizing interviews.
+    I used AI in the form of Cursor (Sonnet 4.5 + GPT5) during the development process as a vibecoding tool. I also used chatGPT for writing and summarizing interviews.
     I also used it to guide next steps or suggestions during development.
 
 Impact
