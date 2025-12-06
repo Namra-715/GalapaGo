@@ -1,6 +1,6 @@
 Tell a before/after story with evidence and a live-ish demo:
 
-Problem & Context
+Problem & Context : 
 
 Who is your user? (FIH partner / role)
     FIH partner - Originally Galapagos Chamber of Tourism. Now independent.
@@ -14,7 +14,7 @@ What hurts about the current process? (“Before” picture)
     Very commercialized way of visiting such a unique place and ecosystem that mainly benefits the large corps. rather
     than the local people. The scope for local businesses like restaurants and hotels is very limited in this scenario.
 
-User Research
+User Research :
 
 1–2 key insights from your interviews or observations.
 
@@ -38,7 +38,7 @@ Briefly: how did this research change your idea?
     Since the connectivity is extremely low, we have to now store the assets locally, compared to AWS being used prior. We also need to offer some 
     other features as only when the person is online, like the AI chatbot because it uses the GeminiAPI.
 
-Prototype
+Prototype :
 
 Walk through your prototype like a story: “User does A → sees B → can now do C.”
 
@@ -48,7 +48,8 @@ Show how the “after” state is better for your user (time saved, confusion re
 
     Done in class demo
 
-AI  
+AI : 
+
 Clearly point out where AI shows up (or why you deliberately chose not to use AI).
     AI chatbot that answers questions related to Galapagos islands ranging from weather, hotels, things to do etc. Accessible from the app homescreen. This is powered by 
     the Google Gemini API.
@@ -57,14 +58,35 @@ How did YOU use AI in the development process itself? Which model did you use? D
     I used AI in the form of Cursor (Sonnet 4.5 + GPT5) during the development process as a vibecoding tool. I also used chatGPT for writing and summarizing interviews.
     I also used it to guide next steps or suggestions during development.
 
-Impact
+Impact :
+
 Why this matters for computing for social good (who benefits, how, and why it’s realistic).
     I think this is a very impactful project as it will raise awareness about a sensitive ecosystem place like Galapagos. It will also provide
-    the locals with good business opportunities hence raising their standard of living. Moreover, tourists call also have a fun time and experience Which
+    the locals with good business opportunities hence raising their standard of living. Moreover, tourists call also have a fun time and experience. Which
     they might not be able to get anywhere else.
 
-One concrete next step you’d take if you had another quarter.
+Changes we made : 
+
+- The provided repo was more than 8 years old. It had serveral issues like outdated dependencies, broken packages, duplicate assets, etc. 
+We took all that code and refactored it to a more user-friendly newer application.
+
+- The provided repo had extremely CRITICAL security issues. It has the aws rds database API key, password username and everything else literally commited to main 
+without any sort of .env file or placeholders. We fixed that by using an .env file for our GMAPS and GEMINI APIs.
+
+- The original app was built with the assumption of internet availability. However, as per our interviews with Allan, we found out that 
+the Galapagos Islands are a place with extremely limited availability. So we modified the app to not use AWS to store assets but instead store them locally
+though we did provide some features like AI chatbot for when the user does have an internet connection.
+
+- We updated the design to be more appealing to the user. Added some young features that young people would like such as maps, things to do, conservation efforts etc.
+
+- We added more documentation.
+
+- We decided on clear future steps from our work that can be taken to make the application even better.
+
+
+One concrete next step you’d take if you had another quarter :
+
     One concrete step I would take if I had more time would definitely be to optimize the app. Currently, since we have the constraint of 
     running most of the app offline due to limited connectivity, we had to bundle the images with the app itself. However, there are more tedious ways
     to compress all those assets and reduce the size of the mobile app. I think I can definitely reduce the size from 500 mb currently to around 200-300 mb. We can also figure out
-    a way to do the same with videos. Maybe later try to provide AI without APIs (Internet usage).
+    a way to do the same with videos. Maybe later try do in app bookings and to provide AI without Internet usage.
